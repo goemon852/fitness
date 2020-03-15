@@ -1,0 +1,13 @@
+<% if users.any? %>
+  <ul class="list-unstyled">
+    <% users.each do |user| %>
+      <li class="media">
+        <img src="..." class="mr-3" alt="...">
+        <div class="media-body">
+          <h5 class="mt-0 mb-1"><%= user.name %></h5>
+          <%= link_to "プロフィールを見る", user_path(user) %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
