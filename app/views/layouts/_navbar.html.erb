@@ -8,8 +8,8 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <%if logged_in?  %>
-          <li>投稿一覧</li>
-          <li>新規投稿</li>
+          <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "新規投稿", new_post_path, class: "nav-link" %></li>
           <li><%= current_user.name %>さんのいいね一覧</li>
           <li class="nav-item"><%= link_to "ログアウト", logout_path, method: :delete, class: "nav-link" %></li>
         <% else %>

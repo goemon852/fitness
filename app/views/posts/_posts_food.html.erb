@@ -1,0 +1,27 @@
+
+<% food = SmallGenre.where(big_genre_id: 3).pluck(:id) %>
+<% posts3 = posts.where(small_genre_id: food) %>
+
+
+<div class="list-group">
+  <ul>
+    <% posts3.each do |post3| %>
+      <li href="#" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1"><%= post3.title %></h5>
+          <small class="text-muted"><%= post3.user.name %></small>
+        </div>
+        <p class="mb-1"><%= post3.content %></p>
+        <small class="text-muted">#<%= post3.small_genre.big_genre.big_genre %>  #<%= post3.small_genre.small_genre %></small>
+        <div>
+          <% if current_user == post3.user %>
+            <%= link_to "編集", edit_post_path(post3), class: "btn btn-secondary btn-sm" %>
+            <%= link_to "削除", post3, method: :delete, data: { confirm: "本当に削除してもよろしいですか?" }, class: "btn btn-danger btn-sm" %>
+          <% end %>
+        </div>        
+      </li>
+    <% end %>
+  </ul>
+  
+  <%= paginate posts3 %>
+</div>
