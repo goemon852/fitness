@@ -1,6 +1,6 @@
 <header class="mb-4">
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">みんなで勉強 筋トレ編</a>
+    <a class="navbar-brand" href="/">みんなで勉強（筋トレ・ダイエット編）</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,7 +10,7 @@
         <%if logged_in?  %>
           <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "新規投稿", new_post_path, class: "nav-link" %></li>
-          <li><%= current_user.name %>さんのいいね一覧</li>
+          <li class="nav-item"><%= link_to "#{current_user.name}さんのいいね一覧", likes_user_path(current_user), class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "ログアウト", logout_path, method: :delete, class: "nav-link" %></li>
         <% else %>
           <li class="nav-item"><%= link_to "ユーザー登録", signup_path, class: "nav-link"  %></li>

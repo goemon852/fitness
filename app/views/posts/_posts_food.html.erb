@@ -9,14 +9,15 @@
       <li href="#" class="list-group-item list-group-item-action">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1"><%= post3.title %></h5>
-          <small class="text-muted"><%= post3.user.name %></small>
+          <small class="text-muted">posted by "<%= post3.user.name %>"</small>
         </div>
         <p class="mb-1"><%= post3.content %></p>
         <small class="text-muted">#<%= post3.small_genre.big_genre.big_genre %>  #<%= post3.small_genre.small_genre %></small>
         <div>
+          <%= render "favorites/like_button", post: post3 %>
           <% if current_user == post3.user %>
-            <%= link_to "編集", edit_post_path(post3), class: "btn btn-secondary btn-sm" %>
-            <%= link_to "削除", post3, method: :delete, data: { confirm: "本当に削除してもよろしいですか?" }, class: "btn btn-danger btn-sm" %>
+            <%= link_to "編集", edit_post_path(post3), class: "btn btn-link btn-sm" %>
+            <%= link_to "削除", post3, method: :delete, data: { confirm: "本当に削除してもよろしいですか?" }, class: "btn btn-link btn-sm" %>
           <% end %>
         </div>        
       </li>

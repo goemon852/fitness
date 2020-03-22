@@ -1,23 +1,6 @@
 <% if logged_in? %>
-  <h1>ログイン後のトップページです</h1>
+  <%= render "toppages/login_top" %>
 
 <% else %>
-  <div class="center jumbotron">
-    <div class="text-left">
-      <h1>
-        ようこそ！<br>
-        みんなで勉強(筋トレ編)へ！
-      </h1>
-      <ul>
-        <li>ログインします</li>
-        <li>大ジャンルを選びます</li>
-        <li>小ジャンルを選びます</li>
-        <li>自身が知りたいジャンルについてみんなが投稿しています</li>
-      </ul>
-      <h3>
-        ただ漠然と筋トレやダイエットをするのではなく、<br>
-        少し勉強してから取り組むとより効果が上がります！
-      </h3>
-    </div>
-  </div>
+  <%= render "toppages/introduction" %>
 <% end %>
