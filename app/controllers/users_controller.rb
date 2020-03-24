@@ -28,16 +28,16 @@ class UsersController < ApplicationController
   
   def likes
     @user = User.find(params[:id])
-    @likes = @user.likes.page(params[:page])
+    @likes = @user.likes.page(params[:page])  #ジャンル関係なしにいいねした投稿をすべて取得
     
-    muscle = SmallGenre.where(big_genre_id: 1).pluck(:id)
-    @likes1 = @likes.where(small_genre_id: muscle)
+    muscle = SmallGenre.where(big_genre_id: 1).pluck(:id)  #big_genre_idが1の小ジャンルをすべて取得
+    @likes1 = @likes.where(small_genre_id: muscle)  #いいねした投稿のうち、big_genre_idが1のものをすべて取得
     
-    diet = SmallGenre.where(big_genre_id: 2).pluck(:id)
-    @likes2 = @likes.where(small_genre_id: diet)
+    diet = SmallGenre.where(big_genre_id: 2).pluck(:id)  #big_genre_idが2の小ジャンルをすべて取得
+    @likes2 = @likes.where(small_genre_id: diet)  #いいねした投稿のうち、big_genre_idが2のものをすべて取得
     
-    food = SmallGenre.where(big_genre_id: 3).pluck(:id)
-    @likes3 = @likes.where(small_genre_id: food)
+    food = SmallGenre.where(big_genre_id: 3).pluck(:id)  #big_genre_idが3の小ジャンルをすべて取得
+    @likes3 = @likes.where(small_genre_id: food)  #いいねした投稿のうち、big_genre_idが3のものをすべて取得
   end  
   
   private

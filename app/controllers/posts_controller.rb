@@ -5,16 +5,16 @@ class PostsController < ApplicationController
   
   def index
     if logged_in?
-      @posts = Post.order(id: :desc).page(params[:page]).per(10)
+      @posts = Post.order(id: :desc).page(params[:page]).per(10)  #ジャンル関係なしに全投稿を取得
       
-      muscle = SmallGenre.where(big_genre_id: 1).pluck(:id)
-      @posts1 = @posts.where(small_genre_id: muscle)
+      muscle = SmallGenre.where(big_genre_id: 1).pluck(:id)   #big_genre_idが1の小ジャンルをすべて取得
+      @posts1 = @posts.where(small_genre_id: muscle)  #big_genre_idが1の投稿をすべて取得
       
-      diet = SmallGenre.where(big_genre_id: 2).pluck(:id)
-      @posts2 = @posts.where(small_genre_id: diet)
+      diet = SmallGenre.where(big_genre_id: 2).pluck(:id)  #big_genre_idが2の小ジャンルをすべて取得
+      @posts2 = @posts.where(small_genre_id: diet)  #big_genre_idが2の投稿をすべて取得
       
-      food = SmallGenre.where(big_genre_id: 3).pluck(:id)
-      @posts3 = @posts.where(small_genre_id: food)
+      food = SmallGenre.where(big_genre_id: 3).pluck(:id)  #big_genre_idが3の小ジャンルをすべて取得
+      @posts3 = @posts.where(small_genre_id: food)  #big_genre_idが3の投稿をすべて取得
     end
   end
   
