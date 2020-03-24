@@ -2,17 +2,15 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      post: 投稿
     attributes:
       user:
         name: 名前
         email: Eメール
         password: パスワード
-
-  activerecord:
-    models:
-      post: 投稿
-    attributes:
       post:
         title: タイトル
         content: 方法・コツ
-        small_genre_id: ジャンル        
+        small_genre_id: ジャンル             
+
+    
