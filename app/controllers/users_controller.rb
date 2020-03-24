@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   
   def likes
     @user = User.find(params[:id])
-    @likes = @user.likes.page(params[:page])  #ジャンル関係なしにいいねした投稿をすべて取得
+    @likes = @user.likes.order(id: :desc).page(params[:page]).per(10)  #ジャンル関係なしにいいねした投稿をすべて取得
     
     muscle = SmallGenre.where(big_genre_id: 1).pluck(:id)  #big_genre_idが1の小ジャンルをすべて取得
     @likes1 = @likes.where(small_genre_id: muscle)  #いいねした投稿のうち、big_genre_idが1のものをすべて取得
