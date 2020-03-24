@@ -29,6 +29,15 @@ class UsersController < ApplicationController
   def likes
     @user = User.find(params[:id])
     @likes = @user.likes.page(params[:page])
+    
+    muscle = SmallGenre.where(big_genre_id: 1).pluck(:id)
+    @likes1 = @likes.where(small_genre_id: muscle)
+    
+    diet = SmallGenre.where(big_genre_id: 2).pluck(:id)
+    @likes2 = @likes.where(small_genre_id: diet)
+    
+    food = SmallGenre.where(big_genre_id: 3).pluck(:id)
+    @likes3 = @likes.where(small_genre_id: food)
   end  
   
   private

@@ -1,8 +1,3 @@
-
-<% muscle = SmallGenre.where(big_genre_id: 1).pluck(:id) %>
-<% posts1 = posts.where(small_genre_id: muscle) %>
-
-
 <div class="list-group">
   <ul>
     <% posts1.each do |post1| %>

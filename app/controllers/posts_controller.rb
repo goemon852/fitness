@@ -6,6 +6,15 @@ class PostsController < ApplicationController
   def index
     if logged_in?
       @posts = Post.order(id: :desc).page(params[:page]).per(10)
+      
+      muscle = SmallGenre.where(big_genre_id: 1).pluck(:id)
+      @posts1 = @posts.where(small_genre_id: muscle)
+      
+      diet = SmallGenre.where(big_genre_id: 2).pluck(:id)
+      @posts2 = @posts.where(small_genre_id: diet)
+      
+      food = SmallGenre.where(big_genre_id: 3).pluck(:id)
+      @posts3 = @posts.where(small_genre_id: food)
     end
   end
   
