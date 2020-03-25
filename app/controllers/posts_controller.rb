@@ -2,10 +2,10 @@ class PostsController < ApplicationController
   
   before_action :require_user_logged_in
   before_action :correct_user, only: [:edit, :update, :destroy]
-  
+  #通常の投稿一覧
   def index
     if logged_in?
-      @posts = Post.order(id: :desc).page(params[:page]).per(10)  #ジャンル関係なしに全投稿を取得
+      @posts = Post.order(id: :desc).page(params[:page]).per(5)  #ジャンル関係なしに全投稿を取得
       
       muscle = SmallGenre.where(big_genre_id: 1).pluck(:id)   #big_genre_idが1の小ジャンルをすべて取得
       @posts1 = @posts.where(small_genre_id: muscle)  #big_genre_idが1の投稿をすべて取得
@@ -18,6 +18,34 @@ class PostsController < ApplicationController
     end
   end
   
+    #「筋肉をつける」で「もっと見る」ボタンを押した際の投稿一覧
+    def muscle
+      if logged_in?
+        @posts = Post.order(id: :desc).page(params[:page]).per(25)  #ジャンル関係なしに全投稿を取得
+        muscle = SmallGenre.where(big_genre_id: 1).pluck(:id)   #big_genre_idが1の小ジャンルをすべて取得
+        @posts1 = @posts.where(small_genre_id: muscle)  #big_genre_idが1の投稿をすべて取得        
+      end
+    end
+  
+    #「痩せたい」で「もっと見る」ボタンを押した際の投稿一覧
+    def diet
+      if logged_in?
+        @posts = Post.order(id: :desc).page(params[:page]).per(25)  #ジャンル関係なしに全投稿を取得
+        diet = SmallGenre.where(big_genre_id: 2).pluck(:id)  #big_genre_idが2の小ジャンルをすべて取得
+        @posts2 = @posts.where(small_genre_id: diet)  #big_genre_idが2の投稿をすべて取得        
+      end      
+    end
+  
+    #「食事面」で「もっと見る」ボタンを押した際の投稿一覧
+    def food
+      if logged_in?
+        @posts = Post.order(id: :desc).page(params[:page]).per(25)
+        food = SmallGenre.where(big_genre_id: 3).pluck(:id)  #big_genre_idが3の小ジャンルをすべて取得
+        @posts3 = @posts.where(small_genre_id: food)  #big_genre_idが3の投稿をすべて取得        
+      end      
+    end
+  
+  #これ以降が投稿一覧以外のアクション
   def show
   end
   
@@ -55,8 +83,10 @@ class PostsController < ApplicationController
     redirect_back(fallback_location: posts_path)
   end
   
-  private
   
+  
+  private
+  #ストロングパラメーター
   def post_params
     params.require(:post).permit(:title, :content, :small_genre_id)
   end
