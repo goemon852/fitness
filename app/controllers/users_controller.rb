@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   
-  before_action :require_user_logged_in, only: [:index, :show, :likes]
+  before_action :require_user_logged_in, only: [:index, :show, :edit, :update, :destroy,:likes]
   
   def index
     @users = User.order(id: :desc).page(params[:page]).per(25)
@@ -24,6 +24,19 @@ class UsersController < ApplicationController
       flash.now[:danger] = "ユーザー登録に失敗しました"
       render :new
     end
+  end
+  
+  def edit
+  end
+  
+  def update
+  end
+  
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:success] = "退会に成功しました"
+    redirect_to root_url
   end
   
   def likes
