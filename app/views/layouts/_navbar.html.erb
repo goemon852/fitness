@@ -15,7 +15,7 @@
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">その他</a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item"><%= link_to "ログアウト", logout_path, method: :delete %></li>
-              <div class="dropdown-divider"></div>
+              <li class="dropdown-divider"></li>
               <li class="dropdown-item"><%= link_to "退会", user_path(current_user), method: :delete, data: { confirm: "本当に退会してもよろしいですか?" } %></li>
             </ul>
           </li>          
