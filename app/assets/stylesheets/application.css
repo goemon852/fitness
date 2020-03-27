@@ -13,10 +13,3 @@
  *= require_tree .
  *= require_self
  */
-.navbar-brand {
-    font-size: 15px;
-}
-
-.pagination {
-  justify-content: center;
-}
