@@ -16,3 +16,7 @@
 .navbar-brand {
     font-size: 15px;
 }
+
+.pagination {
+  justify-content: center;
+}
